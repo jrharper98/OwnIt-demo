@@ -796,6 +796,31 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
 }
 #replay-btn.show { opacity: 1; pointer-events: auto; }
 #replay-btn:hover { transform: scale(1.05); }
+
+#cta-btn {
+  background: var(--gold);
+  color: var(--navy);
+  border: none;
+  border-radius: 99px;
+  padding: 10px 24px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.5s ease 0.3s, transform 0.2s ease;
+  z-index: 200;
+  letter-spacing: 0.5px;
+  margin: 0 auto 8px;
+  display: block;
+  pointer-events: none;
+  box-shadow: 0 4px 20px rgba(244,163,0,0.35);
+  text-decoration: none;
+  text-align: center;
+}
+#cta-btn.show { opacity: 1; pointer-events: auto; }
+#cta-btn:hover { transform: scale(1.05); }
+
 </style>
 </head>
 <body>
@@ -1129,6 +1154,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
   <div id="progress-bar"></div>
 
   <!-- Replay -->
+  <a id="cta-btn" href="https://yourdomain.com/intake" target="_blank">Get Your App →</a>
   <button id="replay-btn" onclick="startShow()">↺ Watch Again</button>
 
 </div><!-- /stage -->
@@ -1200,6 +1226,7 @@ async function countUp(elId, target, prefix='', suffix='', steps=20, duration=60
 async function startShow() {
   animRunning = true;
   $('replay-btn').classList.remove('show');
+  $('cta-btn').classList.remove('show');
   hideAllCallouts();
   hideCursor();
   $('progress-bar').style.width = '0%';
@@ -1507,6 +1534,7 @@ async function startShow() {
   hideCursor();
   hideAllCallouts();
   $('progress-bar').style.width = '100%';
+  $('cta-btn').classList.add('show');
   $('replay-btn').classList.add('show');
   setLabel('');
 }
